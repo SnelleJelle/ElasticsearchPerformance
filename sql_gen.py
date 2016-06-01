@@ -1,5 +1,4 @@
 import MySQLdb
-from itertools import product
 
 mysql_host = "localhost"
 mysql_user = "root"
@@ -18,12 +17,14 @@ cursor.execute("TRUNCATE `forum`.`users`")
 
 class Generator:
     def __init__(self):
-        self.__chars = "abcdefghijklmnopqrstuvwxyz"
-        self.__extended_chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
-        self.__iter = product(self.__chars, repeat=25)
+        self.__count = 0
+        with open("words.txt") as f:
+            self.__content = f.read().splitlines()
+            self.__max = len(self.__content)
 
     def get_value(self):
-        return "".join(next(self.__iter))
+        self.__count += 1 % self.__max
+        return self.__content[self.__count]
 
     def firstname(self):
         return self.get_value()
@@ -41,7 +42,7 @@ class Generator:
 gen = Generator()
 
 total_runs = 10000
-sub_routines = total_runs / 1000
+sub_routines = int(total_runs / 1000)
 for r in range(0, sub_routines):
 
     sql = "INSERT INTO `users` (`firstname`, `lastname`, `username`, `email`) VALUES "
