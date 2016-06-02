@@ -6,12 +6,11 @@ import time
 es_host = "localhost"
 es_port = 9200
 es_index = "forum"
-
 es_type = "users"
 
 es = Elasticsearch(["http://" + es_host + ":" + str(es_port)])
 
-term = "Jonathan"
+term = "turbo"
 
 body = {
     "size": 10000,
@@ -29,7 +28,7 @@ for i in range(0, runs - 1):
     print("Elapsed: " + str(elapsed_millis))
     total += elapsed_millis
 
-    print("Count(milliseconds): " + str(len(search["hits"]["hits"])))
+    print("Count(results): " + str(len(search["hits"]["hits"])))
 
 average = total / runs
 print("Elasticsearch Average(milliseconds): \t" + str(average))
