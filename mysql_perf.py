@@ -39,6 +39,7 @@ for i in range(0, runs - 1):
     total += elapsed_millis
 
     print("Count(results): " + str(len(cursor.fetchall())))
+    print("On attempt: " + str(i))
 
 average = total / runs
 print("MySql Average(milliseconds): \t\t\t" + str(average))
