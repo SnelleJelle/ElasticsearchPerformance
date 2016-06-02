@@ -64,7 +64,7 @@ for (table_name,) in cursor:
         if id % 25000 == 0:
             helpers.bulk(es, bulk)
             bulk = []
-            print("Docs w/ id: {1} to {2}".format(id - 25000, id))
+            print("Docs w/ id: {0} -> {1}".format(id - 25000, id))
 
     table_cursor.close()
     helpers.bulk(es, bulk)
