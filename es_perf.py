@@ -29,6 +29,7 @@ for i in range(0, runs - 1):
     total += elapsed_millis
 
     print("Count(results): " + str(len(search["hits"]["hits"])))
+    print("On attempt: " + str(i))
 
 average = total / runs
 print("Elasticsearch Average(milliseconds): \t" + str(average))
