@@ -11,6 +11,7 @@ es_type = "users"
 es = Elasticsearch(["http://" + es_host + ":" + str(es_port)])
 
 term = "turbo"
+term = "*" + term + "*"
 
 body = {
     "size": 10000,
