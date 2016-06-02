@@ -61,6 +61,9 @@ for (table_name,) in cursor:
         for i in range(1, len(record)):
             document["_source"][table_columns[i]] = record[i]
         bulk.append(document)
+        if id % 25000 == 0:
+            helpers.bulk(es, bulk)
+            bulk = []
         print("Doc id: " + str(id))
 
     table_cursor.close()
