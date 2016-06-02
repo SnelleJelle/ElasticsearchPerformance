@@ -64,10 +64,11 @@ for (table_name,) in cursor:
         if id % 25000 == 0:
             helpers.bulk(es, bulk)
             bulk = []
-        print("Doc id: " + str(id))
+            print("Docs w/ id: {1} to {2}".format(id - 25000, id))
 
     table_cursor.close()
     helpers.bulk(es, bulk)
+    print("Last doc id: " + str(id))
     print("Done table: " + table_name)
 
 cursor.close()

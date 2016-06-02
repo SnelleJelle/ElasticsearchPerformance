@@ -1,4 +1,8 @@
+#!/usr/bin/env python2
+
 import MySQLdb
+
+total_runs = 5000
 
 mysql_host = "localhost"
 mysql_user = "root"
@@ -42,7 +46,6 @@ class Generator:
 
 gen = Generator()
 
-total_runs = 10000
 sub_routines = int(total_runs / 1000)
 for r in range(0, sub_routines):
 
@@ -56,3 +59,5 @@ for r in range(0, sub_routines):
     print("Posted 1000 records on routine: " + str(r))
 
 connection.close()
+
+execfile("bulk_migrate.py")

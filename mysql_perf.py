@@ -43,3 +43,4 @@ for i in range(0, runs - 1):
 
 average = total / runs
 print("MySql Average(milliseconds): \t\t\t" + str(average))
+connection.close()
