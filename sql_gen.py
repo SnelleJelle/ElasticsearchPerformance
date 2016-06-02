@@ -1,8 +1,10 @@
 #!/usr/bin/env python2
 
 import MySQLdb
+import sys
 
-total_runs = 5000
+
+total_runs = int(sys.argv[1]) if len(sys.argv) > 1 else 1000
 
 mysql_host = "localhost"
 mysql_user = "root"
@@ -59,5 +61,3 @@ for r in range(0, sub_routines):
     print("Posted 1000 records on routine: " + str(r))
 
 connection.close()
-
-execfile("bulk_migrate.py")
