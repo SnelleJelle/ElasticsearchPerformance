@@ -7,6 +7,7 @@ mysql_host = "localhost"
 mysql_user = "root"
 mysql_password = "root"
 mysql_database = "forum"
+mysql_table = "users"
 
 connection = MySQLdb.connect(
     host=mysql_host,
@@ -15,10 +16,10 @@ connection = MySQLdb.connect(
 
 cursor = connection.cursor()
 
-term = "aaaaaaaaaaaaaaaaaaaaaaaaa"
+term = "turbo"
 
 sql = """
-SELECT * FROM users
+SELECT * FROM """ + mysql_table + """
 WHERE
 firstname LIKE "%{0}%" OR
 lastname LIKE "%{0}%" OR
@@ -37,7 +38,7 @@ for i in range(0, runs - 1):
     print("Elapsed: " + str(elapsed_millis))
     total += elapsed_millis
 
-    print("Count(milliseconds): " + str(len(cursor.fetchall())))
+    print("Count(results): " + str(len(cursor.fetchall())))
 
 average = total / runs
 print("MySql Average(milliseconds): \t\t\t" + str(average))
