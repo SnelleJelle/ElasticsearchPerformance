@@ -4,6 +4,7 @@ mysql_host = "localhost"
 mysql_user = "root"
 mysql_password = "root"
 mysql_database = "forum"
+mysql_table = "users"
 
 connection = MySQLdb.connect(
     host=mysql_host,
@@ -12,7 +13,7 @@ connection = MySQLdb.connect(
 
 cursor = connection.cursor()
 cursor.execute("USE " + mysql_database)
-cursor.execute("TRUNCATE `forum`.`users`")
+cursor.execute("TRUNCATE " + mysql_table)
 
 
 class Generator:
@@ -23,7 +24,7 @@ class Generator:
             self.__max = len(self.__content)
 
     def get_value(self):
-        self.__count += 1 % self.__max
+        self.__count = (self.__count + 1) % self.__max
         return self.__content[self.__count]
 
     def firstname(self):
@@ -45,7 +46,7 @@ total_runs = 10000
 sub_routines = int(total_runs / 1000)
 for r in range(0, sub_routines):
 
-    sql = "INSERT INTO `users` (`firstname`, `lastname`, `username`, `email`) VALUES "
+    sql = "INSERT INTO " + mysql_table + " (`firstname`, `lastname`, `username`, `email`) VALUES "
     for i in range(0, 999):
         sql += "('{}','{}','{}','{}'), ".format(gen.firstname(), gen.lastname(), gen.username(), gen.email())
     sql += "('{}','{}','{}','{}')".format(gen.firstname(), gen.lastname(), gen.username(), gen.email())
