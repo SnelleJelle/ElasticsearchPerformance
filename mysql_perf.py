@@ -19,13 +19,13 @@ cursor = connection.cursor()
 term = "turbo"
 
 sql = """
-SELECT * FROM """ + mysql_table + """
+SELECT * FROM {0}
 WHERE
-firstname LIKE "%{0}%" OR
-lastname LIKE "%{0}%" OR
-username LIKE "%{0}%" OR
-email LIKE "%{0}%"
-""".format(term)
+firstname LIKE "%{1}%" OR
+lastname LIKE "%{1}%" OR
+username LIKE "%{1}%" OR
+email LIKE "%{1}%;"
+""".format(mysql_table, term)
 
 total = 0
 cursor.execute("USE " + mysql_database)
