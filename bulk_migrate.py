@@ -1,11 +1,9 @@
 #!/usr/bin/env python2
 
 # install prerequisites
-import os
-
-os.system("pip install MySQL-python")
-os.system("pip install requests")
-os.system("pip install elasticsearch")
+# pip install MySQL-python
+# pip install requests
+# pip install elasticsearch
 
 import MySQLdb
 import requests
