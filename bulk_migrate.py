@@ -68,7 +68,6 @@ for (table_name,) in cursor:
 
     table_cursor.close()
     helpers.bulk(es, bulk)
-    print("Last doc id: " + str(id))
     print("Done table: " + table_name)
 
 cursor.close()
